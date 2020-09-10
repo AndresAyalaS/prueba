@@ -1,0 +1,13 @@
+.mat-dialog-container {
+    max-width: 50% !important;
+}
+
+table {
+    width: 100%;
+    max-width: 23vw;
+  }
+
+  th.mat-column-localizacionId {
+    padding-right: 120px;
+   
+  }
