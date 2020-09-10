@@ -1,14 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, PageEvent } from '@angular/material';
-import { DataSource } from '@angular/cdk/table';
-import { map } from 'rxjs/operators';
-
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { registerLocaleData } from '@angular/common';
 import localeCo from '@angular/common/locales/es-CO';
 import { ListarService } from './listar.service';
 import { Router } from '@angular/router';
-import { Observable, merge } from 'rxjs';
-import { MostrarComponent } from '../mostrar/mostrar.component';
+import { FormControl } from '@angular/forms';
 registerLocaleData(localeCo, 'co');
 
 @Component({
@@ -18,14 +14,20 @@ registerLocaleData(localeCo, 'co');
 })
 export class ListaComponent implements OnInit {
 
+  departamentoCtrl = new FormControl();
+
+  departamentosOptions: any[];
+  municipios: any[];
+
   dataSource: [] | null;
-  displayedColumns: string[] = ['localizacionId', 'descripcion', 'accion'];
+  displayedColumns: string[] = ['localizacionId', 'descripcion'];
 
   constructor(
     public _service: ListarService,
     private _router: Router,
     private _matDialog: MatDialog,
   ) {
+    this.departamentosOptions = this._service.onItemsChanged.value;
   }
 
   ngOnInit(): void {
@@ -36,13 +38,13 @@ export class ListaComponent implements OnInit {
     );
   }
 
-  mostrarHandle(event, content): void {
-    const dialogRef = this._matDialog.open(MostrarComponent, {
-      panelClass: 'mostrar-dialog',
-      disableClose: false,
-      data: content
-    });
-    dialogRef.afterClosed().subscribe(result => {});
+  mostrarHandle(event): void {
+    this._service.getMunicipios(event.value.localizacionId);
+    this._service.onMunicipiosChanged.subscribe(
+      (response) => {
+        this.municipios = response;
+      }
+    );
   }
 
 }

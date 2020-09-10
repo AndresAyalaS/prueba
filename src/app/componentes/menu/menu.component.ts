@@ -6,18 +6,8 @@ import { Router } from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
-  constructor(private router: Router) { }
-
-  currentUser: any;
-  ngOnInit() {
-    this.currentUser = localStorage.getItem('user');
-  }
-
-  logout() {
-    localStorage.removeItem('user');
-    this.router.navigate(['login']);
-  }
+  constructor() { }
 
 }

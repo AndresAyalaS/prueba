@@ -44,10 +44,8 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { MatPaginatorEs } from 'src/@material/matpaginatores';
-import { LoginComponent } from './componentes/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaComponent } from './componentes/lista/lista.component';
-import { MostrarComponent } from './componentes/mostrar/mostrar.component';
 
 const DATE_FORMATS = {
   parse: {
@@ -67,8 +65,6 @@ const DATE_FORMATS = {
     AppComponent,
     ListaComponent,
     MenuComponent,
-    LoginComponent,
-    MostrarComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -125,7 +121,6 @@ const DATE_FORMATS = {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    MostrarComponent
-  ] // Auque se retire sigue funcionando
+  ]
 })
 export class AppModule { }

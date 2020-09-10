@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './componentes/login/login.component';
 import { ListaComponent } from './componentes/lista/lista.component';
 import { ListarService } from './componentes/lista/listar.service';
 
@@ -14,9 +13,6 @@ const routes: Routes = [
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
   },
-
-
-  { path: 'login', component: LoginComponent },
 
 ];
 
