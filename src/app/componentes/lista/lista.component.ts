@@ -5,6 +5,7 @@ import localeCo from '@angular/common/locales/es-CO';
 import { ListarService } from './listar.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { DataSource } from '@angular/cdk/table';
 registerLocaleData(localeCo, 'co');
 
 @Component({
@@ -19,7 +20,7 @@ export class ListaComponent implements OnInit {
   departamentosOptions: any[];
   municipios: any[];
 
-  dataSource: [] | null;
+  dataSource: any[];
   displayedColumns: string[] = ['localizacionId', 'descripcion'];
 
   constructor(
@@ -31,18 +32,20 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._service.onItemsChanged.subscribe(
-      (response) => {
-        this.dataSource = response;
-      }
-    );
+    // this._service.onItemsChanged.subscribe(
+    //   (response) => {
+    //     this.dataSource = response;
+    //   }
+    // );
   }
 
   mostrarHandle(event): void {
     this._service.getMunicipios(event.value.localizacionId);
     this._service.onMunicipiosChanged.subscribe(
       (response) => {
-        this.municipios = response;
+        if (response) {
+          this.dataSource = response;
+        }
       }
     );
   }

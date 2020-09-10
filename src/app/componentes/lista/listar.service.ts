@@ -19,7 +19,7 @@ export class ListarService implements Resolve<any> {
     private _httpClient: HttpClient
   ) {
     this.onItemsChanged = new BehaviorSubject({});
-    this.onMunicipiosChanged = new BehaviorSubject({});
+    this.onMunicipiosChanged = new BehaviorSubject([]);
   }
 
   /**
